@@ -134,45 +134,35 @@ function ReceiverMessage({ image, message, replyTo }) {
   return (
     <>
       <div className="group flex items-start justify-start gap-[10px] relative mb-4 px-2">
-        {/* Receiver DP */}
         <div className="w-[35px] h-[35px] min-w-[35px] overflow-hidden rounded-full shadow-md">
-          <img
-            src={selectedUser?.image || dp}
-            alt="receiver"
-            className="h-full w-full object-cover"
-          />
+          <img src={selectedUser?.image || dp} alt="receiver" className="h-full w-full object-cover" />
         </div>
 
         <div className="flex items-center gap-[10px]">
-          {/* Message Bubble - Receiver ka background white/grayish rakha hai */}
+          {/* Yahan Logic change kiya hai: image hai to width fix, nahi to fit-content */}
           <div
             ref={scrollRef}
-            className="w-fit max-w-[75%] sm:max-w-[60%] bg-white p-3 text-gray-800 rounded-tl-none rounded-2xl shadow-md flex flex-col h-auto border border-gray-100"
+            className={`${image ? "w-[280px] sm:w-[350px]" : "w-fit"} max-w-[75%] sm:max-w-[60%] bg-white p-3 text-gray-800 rounded-tl-none rounded-2xl shadow-md flex flex-col h-auto border border-gray-100`}
           >
-            {/* Reply Section */}
             {replyTo && (replyTo.text || replyTo.img) && (
               <div className="bg-gray-50 border-l-4 border-[#20c7ff] p-2 rounded-lg mb-2 text-xs flex justify-between items-center gap-2 min-w-[120px]">
                 <div className="flex flex-col truncate">
                   <p className="font-bold text-[#20c7ff] uppercase">{replyTo.userName}</p>
                   <p className="text-gray-500 truncate">{replyTo.text || (replyTo.img ? "Photo" : "")}</p>
                 </div>
-                {replyTo.img && (
-                  <img src={replyTo.img} className="w-8 h-8 object-cover rounded-md" alt="reply" />
-                )}
+                {replyTo.img && <img src={replyTo.img} className="w-8 h-8 object-cover rounded-md" alt="reply" />}
               </div>
             )}
 
-            {/* Image Content */}
             {image && (
               <img
                 src={image}
-                className="w-full max-h-[300px] object-cover rounded-lg mb-1 cursor-pointer hover:brightness-95 transition-all shadow-sm"
+                className="w-full max-h-[300px] object-cover rounded-lg mb-2 cursor-pointer hover:brightness-95 transition-all shadow-sm"
                 onClick={() => setShowFullImage(true)}
                 alt="received"
               />
             )}
 
-            {/* Text Content - Auto Expand & Break Words */}
             {message && (
               <span className="text-[15px] sm:text-[16px] leading-relaxed break-words whitespace-pre-wrap px-1">
                 {message}
@@ -180,31 +170,16 @@ function ReceiverMessage({ image, message, replyTo }) {
             )}
           </div>
 
-          {/* Reply Button (Hover par dikhega) */}
-          <button
-            onClick={handleReply}
-            className="opacity-0 group-hover:opacity-100 self-center p-2 bg-white rounded-full hover:bg-gray-100 transition-all text-gray-500 shadow-sm"
-          >
+          <button onClick={handleReply} className="opacity-0 group-hover:opacity-100 self-center p-2 bg-white rounded-full hover:bg-gray-100 transition-all text-gray-500 shadow-sm">
             <BsReplyFill size={18} />
           </button>
         </div>
       </div>
 
-      {/* Full Image Modal */}
       {showFullImage && (
-        <div
-          className="fixed inset-0 z-[1000] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
-          onClick={() => setShowFullImage(false)}
-        >
-          <button className="absolute top-6 right-6 text-white text-4xl">
-            <IoCloseOutline />
-          </button>
-          <img
-            src={image}
-            className="max-w-full max-h-[90vh] rounded-lg shadow-2xl animate-in zoom-in duration-300"
-            onClick={(e) => e.stopPropagation()}
-            alt="full"
-          />
+        <div className="fixed inset-0 z-[1000] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4" onClick={() => setShowFullImage(false)}>
+          <button className="absolute top-6 right-6 text-white text-4xl"><IoCloseOutline /></button>
+          <img src={image} className="max-w-full max-h-[90vh] rounded-lg shadow-2xl animate-in zoom-in duration-300" onClick={(e) => e.stopPropagation()} alt="full" />
         </div>
       )}
     </>
