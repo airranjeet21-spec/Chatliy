@@ -101,15 +101,15 @@ function SenderMessage({ image, message, replyTo }) {
 
   return (
     <>
-      <div className="group flex items-start justify-end gap-[10px] relative mb-4 px-2">
+      <div className="group flex items-start justify-end gap-[10px] relative mb-4 px-2 w-full">
         <button onClick={handleReplyClick} className="opacity-0 group-hover:opacity-100 self-center p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-all text-gray-500 shadow-sm">
           <BsReplyFill size={18} />
         </button>
 
-        {/* Dynamic Width based on image presence */}
+        {/* Logic: Image ho to fix width, nahi to text ke liye max-width lock */}
         <div 
           ref={scrollRef}
-          className={`${image ? "w-[280px] sm:w-[350px]" : "w-fit"} max-w-[75%] sm:max-w-[60%] bg-[#20c7ff] p-3 text-white rounded-tr-none rounded-2xl shadow-md flex flex-col h-auto`}
+          className={`${image ? "w-[280px] sm:w-[350px]" : "w-fit max-w-[280px] sm:max-w-[400px]"} bg-[#20c7ff] p-3 text-white rounded-tr-none rounded-2xl shadow-md flex flex-col h-auto`}
         >
           {replyTo && (replyTo.text || replyTo.img) && (
             <div className="bg-black/10 border-l-4 border-white p-2 rounded-lg mb-2 text-xs flex justify-between items-center gap-2 min-w-[120px]">
@@ -131,7 +131,7 @@ function SenderMessage({ image, message, replyTo }) {
           )}
 
           {message && (
-            <span className="text-[15px] sm:text-[16px] leading-relaxed break-words whitespace-pre-wrap px-1">
+            <span className="text-[15px] sm:text-[16px] leading-relaxed break-all whitespace-pre-wrap px-1">
               {message}
             </span>
           )}
@@ -145,7 +145,7 @@ function SenderMessage({ image, message, replyTo }) {
       {showFullImage && (
         <div className="fixed inset-0 z-[1000] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4" onClick={() => setShowFullImage(false)}>
           <button className="absolute top-6 right-6 text-white text-4xl"><IoCloseOutline /></button>
-          <img src={image} className="max-w-full max-h-[90vh] rounded-lg shadow-2xl animate-in zoom-in duration-300" onClick={(e) => e.stopPropagation()} alt="full" />
+          <img src={image} className="max-w-full max-h-[90vh] rounded-lg shadow-2xl" onClick={(e) => e.stopPropagation()} alt="full" />
         </div>
       )}
     </>
