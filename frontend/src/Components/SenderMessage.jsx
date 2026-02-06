@@ -109,7 +109,7 @@ function SenderMessage({ image, message, replyTo }) {
         {/* Logic: Image ho to fix width, nahi to text ke liye max-width lock */}
         <div 
           ref={scrollRef}
-          className={`${image ? "w-[280px] sm:w-[350px]" : "w-fit max-w-[280px] sm:max-w-[400px]"} bg-[#20c7ff] p-3 text-white rounded-tr-none rounded-2xl shadow-md flex flex-col h-auto`}
+          className={`${image ? "w-[280px] sm:w-[350px]" : "w-fit max-w-[250px] sm:max-w-[400px]"} bg-[#20c7ff] p-3 text-white rounded-tr-none rounded-2xl shadow-md flex flex-col h-auto`}
         >
           {replyTo && (replyTo.text || replyTo.img) && (
             <div className="bg-black/10 border-l-4 border-white p-2 rounded-lg mb-2 text-xs flex justify-between items-center gap-2 min-w-[120px]">
