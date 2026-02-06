@@ -15,13 +15,7 @@ function App() {
   getOtherUsers();
   const dispatch = useDispatch();
   const { userData } = useSelector((state) => state.user);
- 
-useEffect(() => {
-  getCurrentUser(); 
-    if (userData) {
-      getOtherUsers();
-    }
-  }, [dispatch]);
+
   useEffect(() => {
     if (!userData?._id) return;
 
