@@ -1,2 +1,2 @@
 export const serverUrl =
-  "http://localhost:8000";
+  "https://realtimechatapp-backend-undf.onrender.com";
