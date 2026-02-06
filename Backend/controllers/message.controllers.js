@@ -28,8 +28,6 @@ export const SendMessage = async (req, res) => {
       image,
       replyTo: parsedReply,
     });
-
-    // Conversation logic (Same rahega)
     let conversation = await Conversation.findOne({
       participants: { $all: [sender, receiver] },
     });
