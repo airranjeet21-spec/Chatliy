@@ -13,10 +13,15 @@ import { connectSocket, disconnectSocket } from "./socket";
 function App() {
   getCurrentUser();
   getOtherUsers();
-
-  const { userData } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
+  const { userData } = useSelector((state) => state.user);
+ 
+useEffect(() => {
+  getCurrentUser(); 
+    if (userData) {
+      getOtherUsers();
+    }
+  }, [dispatch]);
   useEffect(() => {
     if (!userData?._id) return;
 
