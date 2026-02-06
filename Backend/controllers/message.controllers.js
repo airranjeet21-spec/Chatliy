@@ -9,10 +9,16 @@ export const SendMessage = async (req, res) => {
     // req.body se replyTo bhi nikaalo
     const { message, replyTo } = req.body; 
 
-    let image;
-    if (req.file) {
-      image = await uploadOnCloudinary(req.file.path);
-    }
+    // let image;
+    // if (req.file) {
+    //   image = await uploadOnCloudinary(req.file.path);
+    // }
+    // editProfile controller mein:
+if (req.file) {
+    // req.file.path ki jagah req.file.buffer pass karein
+    const imageUrl = await uploadOnCloudinary(req.file.buffer); 
+    updateData.image = imageUrl;
+}
 
     // JSON parse karna padega kyunki frontend se FormData ke through Stringify karke aata hai
     let parsedReply = null;
