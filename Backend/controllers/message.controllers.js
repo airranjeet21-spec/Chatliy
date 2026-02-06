@@ -6,17 +6,12 @@ export const SendMessage = async (req, res) => {
   try {
     const sender = req.userId;
     const { receiver } = req.params;
-    // req.body se replyTo bhi nikaalo
     const { message, replyTo } = req.body; 
 
     let image;
-    if (req.file) {
-      // image = await uploadOnCloudinary(req.file.path);
+    if (req.file) { 
      image = await uploadOnCloudinary(req.file.buffer);
     }
-
-
-    // JSON parse karna padega kyunki frontend se FormData ke through Stringify karke aata hai
     let parsedReply = null;
     if (replyTo) {
       try {
@@ -31,7 +26,7 @@ export const SendMessage = async (req, res) => {
       receiver,
       message,
       image,
-      replyTo: parsedReply, // Database mein save karo
+      replyTo: parsedReply,
     });
 
     // Conversation logic (Same rahega)
