@@ -142,7 +142,7 @@ function ReceiverMessage({ image, message, replyTo }) {
           {/* Logic: Image hai to width fix, nahi to lamba text hai to bhi width lock rahegi */}
           <div
             ref={scrollRef}
-            className={`${image ? "w-[280px] sm:w-[350px]" : "w-fit max-w-[280px] sm:max-w-[400px]"} bg-white p-3 text-gray-800 rounded-tl-none rounded-2xl shadow-md flex flex-col h-auto border border-gray-100`}
+            className={`${image ? "w-[250px] sm:w-[350px]" : "w-fit max-w-[200px] sm:max-w-[400px]"} bg-white p-3 text-gray-800 rounded-tl-none rounded-2xl shadow-md flex flex-col h-auto border border-gray-100`}
           >
             {replyTo && (replyTo.text || replyTo.img) && (
               <div className="bg-gray-50 border-l-4 border-[#20c7ff] p-2 rounded-lg mb-2 text-xs flex justify-between items-center gap-2 min-w-[120px]">
