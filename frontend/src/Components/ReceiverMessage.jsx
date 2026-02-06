@@ -133,16 +133,16 @@ function ReceiverMessage({ image, message, replyTo }) {
 
   return (
     <>
-      <div className="group flex items-start justify-start gap-[10px] relative mb-4 px-2">
+      <div className="group flex items-start justify-start gap-[10px] relative mb-4 px-2 w-full">
         <div className="w-[35px] h-[35px] min-w-[35px] overflow-hidden rounded-full shadow-md">
           <img src={selectedUser?.image || dp} alt="receiver" className="h-full w-full object-cover" />
         </div>
 
         <div className="flex items-center gap-[10px]">
-          {/* Yahan Logic change kiya hai: image hai to width fix, nahi to fit-content */}
+          {/* Logic: Image hai to width fix, nahi to lamba text hai to bhi width lock rahegi */}
           <div
             ref={scrollRef}
-            className={`${image ? "w-[280px] sm:w-[350px]" : "w-fit"} max-w-[75%] sm:max-w-[60%] bg-white p-3 text-gray-800 rounded-tl-none rounded-2xl shadow-md flex flex-col h-auto border border-gray-100`}
+            className={`${image ? "w-[280px] sm:w-[350px]" : "w-fit max-w-[280px] sm:max-w-[400px]"} bg-white p-3 text-gray-800 rounded-tl-none rounded-2xl shadow-md flex flex-col h-auto border border-gray-100`}
           >
             {replyTo && (replyTo.text || replyTo.img) && (
               <div className="bg-gray-50 border-l-4 border-[#20c7ff] p-2 rounded-lg mb-2 text-xs flex justify-between items-center gap-2 min-w-[120px]">
@@ -164,7 +164,7 @@ function ReceiverMessage({ image, message, replyTo }) {
             )}
 
             {message && (
-              <span className="text-[15px] sm:text-[16px] leading-relaxed break-words whitespace-pre-wrap px-1">
+              <span className="text-[15px] sm:text-[16px] leading-relaxed break-all whitespace-pre-wrap px-1">
                 {message}
               </span>
             )}
@@ -179,7 +179,7 @@ function ReceiverMessage({ image, message, replyTo }) {
       {showFullImage && (
         <div className="fixed inset-0 z-[1000] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4" onClick={() => setShowFullImage(false)}>
           <button className="absolute top-6 right-6 text-white text-4xl"><IoCloseOutline /></button>
-          <img src={image} className="max-w-full max-h-[90vh] rounded-lg shadow-2xl animate-in zoom-in duration-300" onClick={(e) => e.stopPropagation()} alt="full" />
+          <img src={image} className="max-w-full max-h-[90vh] rounded-lg shadow-2xl" onClick={(e) => e.stopPropagation()} alt="full" />
         </div>
       )}
     </>
