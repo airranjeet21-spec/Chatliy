@@ -22,7 +22,6 @@ const uploadOnCloudinary = async (fileBuffer) => {
                     }
                 }
             );
-            // File ke buffer ko stream mein pass karna
             uploadStream.end(fileBuffer);
         });
 
