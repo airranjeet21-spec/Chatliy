@@ -20,14 +20,7 @@ export const editProfile = async (req, res) => {
 
     let updateData = {};
     if (name) updateData.name = name;
-
-    // if (req.file) {
-    //   const imageUrl = await uploadOnCloudinary(req.file.path);
-    //   updateData.image = imageUrl;
-    // }
-    // editProfile controller mein:
 if (req.file) {
-    // req.file.path ki jagah req.file.buffer pass karein
     const imageUrl = await uploadOnCloudinary(req.file.buffer); 
     updateData.image = imageUrl;
 }
