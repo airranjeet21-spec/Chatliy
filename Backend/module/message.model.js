@@ -17,7 +17,6 @@ const messageSchema = new mongoose.Schema(
     image: {
       type: String, default: ""
     },
-    // --- YE ADD KARO ---
     replyTo: {
       text: { type: String, default: "" },
       img: { type: String, default: "" },
