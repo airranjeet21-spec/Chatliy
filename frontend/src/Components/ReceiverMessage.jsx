@@ -147,7 +147,7 @@ function ReceiverMessage({ image, message, replyTo }) {
           {/* Message Bubble - Receiver ka background white/grayish rakha hai */}
           <div
             ref={scrollRef}
-            className="w-fit max-w-[75%] sm:max-w-[60%] bg-white p-3 text-gray-800 rounded-tl-none rounded-2xl shadow-md flex flex-col h-auto border border-gray-100"
+            className="w-fit max-w-[45%] sm:max-w-[60%] bg-white p-3 text-gray-800 rounded-tl-none rounded-2xl shadow-md flex flex-col h-auto border border-gray-100"
           >
             {/* Reply Section */}
             {replyTo && (replyTo.text || replyTo.img) && (
