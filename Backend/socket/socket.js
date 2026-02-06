@@ -21,20 +21,15 @@ export const getReceiverSocketId = (receiver) => {
 
 io.on("connection", (socket) => {
   const userId = socket.handshake.query.userId;
-
-  // Check if userId is valid string "undefined" aur actual undefined dono handle honge
   if (userId && userId !== "undefined") {
     userSocketMap[userId] = socket.id;
   }
-
-  // Online users bhej rahe hain
   io.emit("getOnlineUsers", Object.keys(userSocketMap));
 
   socket.on("disconnect", () => {
     if (userId && userId !== "undefined") {
       delete userSocketMap[userId];
     }
-    // Yahan sirf emit karna hai, delete nahi!
     io.emit("getOnlineUsers", Object.keys(userSocketMap));
   });
 });
