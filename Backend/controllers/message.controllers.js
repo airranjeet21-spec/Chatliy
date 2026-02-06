@@ -11,7 +11,8 @@ export const SendMessage = async (req, res) => {
 
     let image;
     if (req.file) {
-      image = await uploadOnCloudinary(req.file.path);
+      // image = await uploadOnCloudinary(req.file.path);
+     image = await uploadOnCloudinary(req.file.buffer);
     }
 
 
